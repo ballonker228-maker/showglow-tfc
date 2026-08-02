@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show & Glow Terra Firma | Хардкорный Minecraft</title>
+    <style>
+        :root {
+            --mc-bg: #111111;
+            --mc-btn: #8b5a2b;
+            --mc-btn-hover: #a06835;
+            --mc-text-yellow: #fcea54;
+            --mc-border: #3b2716;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--mc-bg);
+            color: #ffffff;
+            line-height: 1.6;
+            background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Шапка */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 10%;
+            background-color: rgba(15, 15, 15, 0.95);
+            border-bottom: 3px solid #4a3319;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-logo img {
+            height: 35px;
+            width: auto;
+            filter: drop-shadow(2px 2px #000);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: bold;
+            text-shadow: 1px 1px #000;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--mc-text-yellow);
+        }
+
+        .github-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .github-nav-link svg {
+            width: 18px;
+            height: 18px;
+            fill: #fff;
+            transition: fill 0.2s;
+        }
+
+        .github-nav-link:hover svg {
+            fill: var(--mc-text-yellow);
+        }
+
+        /* Главный экран */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 60px 20px;
+        }
+
+        .hero-logo {
+            max-width: 480px;
+            width: 90%;
+            height: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.8));
+        }
+
+        .hero h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #ffaa00;
+            text-shadow: 2px 2px #000;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #ddd;
+            max-width: 700px;
+            margin-bottom: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 25px;
+            border-radius: 5px;
+            border: 1px solid #4a3319;
+        }
+
+        /* Кнопка в стиле лаунчера */
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(to bottom, #b87333, #8b5a2b);
+            color: var(--mc-text-yellow);
+            padding: 18px 45px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 4px;
+            border: 3px solid #3b2716;
+            box-shadow: 0 6px 0 #2a1c0f, 0 10px 20px rgba(0,0,0,0.5);
+            transition: all 0.1s ease;
+            text-transform: uppercase;
+            text-shadow: 2px 2px #000;
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(to bottom, #cb833b, #9b6533);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 #2a1c0f, 0 12px 25px rgba(0,0,0,0.6);
+        }
+
+        .download-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #2a1c0f;
+        }
+
+        /* Блок особенностей */
+        .features {
+            padding: 80px 10%;
+            background-color: rgba(17, 17, 17, 0.95);
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            border-top: 3px solid #4a3319;
+            border-bottom: 3px solid #4a3319;
+        }
+
+        .feature-card {
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 6px;
+            width: 320px;
+            border: 2px solid #4a3319;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--mc-text-yellow);
+            text-shadow: 1px 1px #000;
+        }
+
+        .feature-card p {
+            color: #bbb;
+            font-size: 0.95rem;
+        }
+
+        /* Блок про донат */
+        .donate-section {
+            padding: 80px 10%;
+            text-align: center;
+            background: rgba(15, 12, 10, 0.85);
+            border-bottom: 3px solid #4a3319;
+        }
+
+        .donate-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--mc-text-yellow);
+            text-shadow: 2px 2px #000;
+        }
+
+        .donate-desc {
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            color: #ccc;
+            font-size: 1.05rem;
+        }
+
+        .donate-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .donate-card {
+            background: #181818;
+            border: 2px solid #5a3a21;
+            padding: 25px;
+            border-radius: 6px;
+            width: 280px;
+            text-align: left;
+        }
+
+        .donate-card h4 {
+            color: #ffaa00;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .donate-card p {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Шаги */
+        .steps {
+            padding: 80px 10%;
+            text-align: center;
+            background: rgba(10, 10, 10, 0.9);
+        }
+
+        .steps h2 {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: #fff;
+            text-shadow: 2px 2px #000;
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .step-item {
+            background: #181818;
+            border: 2px solid #4a3319;
+            padding: 30px;
+            border-radius: 6px;
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+        }
+
+        .step-number {
+            color: var(--mc-text-yellow);
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px #000;
+        }
+
+        .step-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .step-item p {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Подвал */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: #0b0b0b;
+            color: #777;
+            border-top: 3px solid #332211;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header>
+        <div class="header-logo">
+            <img src="logo.png" alt="Show & Glow Terra Firma">
+        </div>
+        <nav>
+            <a href="#home">Главная</a>
+            <a href="#features">О сборке</a>
+            <a href="#donate">О донате</a>
+            <a href="#start">Как начать</a>
+            <a href="https://github.com/ballonker228-maker/showglow-updates" target="_blank" class="github-nav-link">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                GitHub
+            </a>
+        </nav>
+    </header>
+
+    <!-- Главный экран -->
+    <section class="hero" id="home">
+        <img src="logo.png" alt="Show & Glow Terra Firma" class="hero-logo">
+        
+        <h3>Хардкорное выживание без компромиссов на базе TFC и Create</h3>
+        <p>Забудь про привычный Minecraft. Здесь тебя ждет суровая реалистичная TerraFirmaCraft, где нет места легким победам, и глубокая механизация Create, позволяющая обуздать этот дикий мир силой мысли, шестеренок и пара.</p>
+        
+        <!-- Ссылка на скачивание лаунчера с твоего релиза -->
+        <a href="https://github.com/ballonker228-maker/showglow-updates/releases/download/1.1/ShowGlowLauncher_Installer.exe" class="download-btn">Скачать лаунчер</a>
+        <p style="margin-top: 20px; font-size: 0.85rem; background: none; border: none; color: #888;">Forge 1.20.1 | Прямая ссылка с GitHub Releases</p>
+    </section>
+
+    <!-- Особенности -->
+    <section class="features" id="features">
+        <div class="feature-card">
+            <h3>TerraFirmaCraft (TFC)</h3>
+            <p>Глобальная переработка выживания: реалистичное палео/неолитическое развитие, сложные сплавы металлов, гниение еды, климатические зоны и полная переработка руд.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Модификация Create</h3>
+            <p>Инженерное искупление. Создавай сложные кинетические механизмы, конвейеры, поезда и автоматизируй добычу ресурсов, когда одолеешь первобытный хардкор.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Честная атмосфера</h3>
+            <p>Никаких упрощений механик. Каждое бревно, каждый слиток металла и каждая постройка даются трудом, потом и командной работой.</p>
+        </div>
+    </section>
+
+    <!-- Блок про донат -->
+    <section class="donate-section" id="donate">
+        <h2>Позиция по донату: Честная игра</h2>
+        <p class="donate-desc">Мы создаем проект для тех, кто ценит настоящее выживание. На нашей сборке <strong>нет и никогда не будет pay-to-win</strong>. Купить победу, броню или готовые ресурсы нельзя. Выживают только навыки, упорство и сообразительность.</p>
+        
+        <div class="donate-cards">
+            <div class="donate-card">
+                <h4>Косметика и стиль</h4>
+                <p>Уникальные визуальные фишки, цветные ники и префиксы для тех, кто хочет поддержать развитие сервера.</p>
+            </div>
+            <div class="donate-card">
+                <h4>Никакого дисбаланса</h4>
+                <p>Никаких покупных мечей, креатива или ресурсов. Все игроки находятся в абсолютно равных суровых условиях.</p>
+            </div>
+            <div class="donate-card">
+                <h4>Развитие проекта</h4>
+                <p>Все собранные средства идут исключительно на оплату мощного хостинга без лагов и улучшение лаунчера.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Шаги -->
+    <section class="steps" id="start">
+        <h2>Как начать игру?</h2>
+        <div class="steps-container">
+            <div class="step-item">
+                <div class="step-number">01</div>
+                <h4>Скачай</h4>
+                <p>Загрузи установщик лаунчера с нашего GitHub.</p>
+            </div>
+            <div class="step-item">
+                <div class="step-number">02</div>
+                <h4>Запусти</h4>
+                <p>Установи лаунчер — он сам подготовит всё необходимое на ПК.</p>
+            </div>
+            <div class="step-item">
+                <div class="step-number">03</div>
+                <h4>Врывайся</h4>
+                <p>Введи свой ник, дождись загрузки сборки и покажи, на что способен!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <p>© 2026 Show & Glow Terra Firma Project. Все права защищены.</p>
+    </footer>
+
+</body>
+</html>
